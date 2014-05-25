@@ -9,10 +9,11 @@ Each column of the tidy data set contained in [newAverageRecognitionData.csv](ht
 - *activity*: activity performed by the subject. The 6 admissible values are:
 WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
 
-- *subject*: identity of the subject performing the activity. The 30 admissible values are integers ranging fro; 1 to 30.
+- *subject*: identity of the subject performing the activity. The 30 admissible values are integers ranging from 1 to 30.
 
-- 7 feature measurement columns, whic are calculated as average 
-The remaining 79 columns are split into the following categories:
+- 79 feature measurement columns: each column is calculated as average of Samsung smartphone data measurement, for each activity and each subject. Example of clumn name is *time.gravity.accelerometer.std.X*
+
+These 79 columns are split into the following categories:
 
 - Triaxial acceleration from the accelerometer (total acceleration).
 - Triaxial estimated body acceleration.
