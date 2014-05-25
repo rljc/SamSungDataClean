@@ -6,12 +6,12 @@ This code book describes the variables, the data, and transformations  performed
 
 Each column of the tidy data set contained in [newAverageRecognitionData.csv](https://github.com/rljc/SamSungDataClean/blob/master/newAverageRecognitionData.csv) is described below.
 
-- *activity*: activity performed by the subject. The 6 admissible values are:
+- *activity**: activity performed by the subject. The 6 admissible values are:
 WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
 
-- *subject*: identity of the subject performing the activity. The 30 admissible values are integers ranging from 1 to 30.
+- **subject**: identity of the subject performing the activity. The 30 admissible values are integers ranging from 1 to 30.
 
-- 79 feature measurement columns: each column is calculated as average of Samsung smartphone data measurement, for each activity and each subject. Example of clumn name is *time.gravity.accelerometer.std.X*
+- 79 feature measurement columns: each column is calculated as average of Samsung smartphone data measurement, for each activity and each subject. Example of column name is **time.gravity.accelerometer.std.X**
 
 These 79 columns are split into the following categories:
 
