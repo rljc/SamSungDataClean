@@ -56,13 +56,13 @@ At this point the 2 datasets are available as data frames:
 
 Merge is performed by combination of rows, as each data set describes different observations on the same variables.
 
-### Extract only the measurements on the mean and standard deviation for each measurement. 
+### Extraction of  measurements on the mean and standard deviation for each measurement. 
 
 The initial number of feature measurement columns is 561, which is cut down to 79 by filtering in only the columns of which name contains 'mean' or 'std' string, as reauired.
 
 Note: we apply this prior to merging Training and Test data sets, in order to optimize performance.
 
-### Use descriptive activity names to name the activities in the data set
+### Usage of descriptive names in the data set
 
 The initial activity information is captured as activity.code ranging from 1 to 6, which are tranformed into their textual equivalent WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING, by merging with the data frame loaded from activity definitions stored in activity_labels.txt. activity.code column is dropped after this merge.
 
@@ -72,7 +72,7 @@ Feature measurement columns use short names that may be ambigous, so a few repla
 
 The combined Training+Test dataset is saved as "humanActivityRecognitionData.txt" file.
 
-### Creates a second, independent tidy data set with the average of each variable for each activity and each subject
+### Creation of an independent tidy data set with the average of each variable for each activity and each subject
 
 The following 2 operations are performed.
 

@@ -147,8 +147,8 @@ library(reshape2)
 # $ value   : num  0.308 0.168 0.343 0.31 0.17 ...
 meltData <- melt(hActivityRecognitionData3, id=c("activity", "subject"), 
                  measure.vars=thenewcolnames[3:length(thenewcolnames)])
-str(meltData)
-View(hActivityRecognitionData3)
+
+
 # Cast this data set with formula 'subject + activity.label ~ variable', 
 # so that subject varies slowest. Use mean as aggregate function.
 
@@ -161,8 +161,9 @@ castData <- dcast(meltData, subject + activity ~ variable, mean)
 # Save the new data set
 write.csv(castData, file = "newAverageRecognitionData.csv", row.names=FALSE)
 
-theResult = read.csv("newAverageRecognitionData.csv"); 
-View(theResult)
+# Additional instructions to test teh result can be loaded:
+#theResult = read.csv("newAverageRecognitionData.csv"); 
+#View(theResult)
 
 # Appendix: Inertial Signals (not in scope)
 
