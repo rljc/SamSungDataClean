@@ -6,9 +6,9 @@ In this directory you will find:
 - [run_analysis.R](https://github.com/rljc/SamSungDataClean/blob/master/run_analysis.R): R script performing the following:
 
 1. Merge of the original training and test data sets.
-2. Extractionf of the measurements on the mean and standard deviation for each measurement.
+2. Extraction of the measurements on the mean and standard deviation for each measurement.
 3. Usage of descriptive labels and names for the activities in the data set
-4. Creation a second, independent tidy data set with the average of each variable for each activity and each subject (the txt file above).
+4. Creation a second, independent tidy data set with the average of each variable for each activity and each subject (the csv file above).
 
 ## Original sources
 

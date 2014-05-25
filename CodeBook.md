@@ -19,7 +19,7 @@ These 79 columns are split into the following categories:
 - Triaxial estimated body acceleration.
 - Triaxial Angular velocity from the gyroscope. 
 
-Each of these 79 columns contains a measure for each feature defined and retained during the transformations applied. During these transformations only 
+Each of these 79 columns contains a measure for each feature defined and retained during the transformations applied. During these transformations only meand and standard deviation information has been retained.
 
 The elements used to name the columns need to be interpreted in this way:
 - *time*: signals captured at a constant rate of 50 Hz, then filtered.
@@ -36,7 +36,7 @@ The elements used to name the columns need to be interpreted in this way:
 
 ## Transformations
 
-The following transformations were applied to the data set available from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip, and implemented in *run_analysis.R*.
+The following transformations were applied to the data set available from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip, and implemented in  [run_analysis.R](https://github.com/rljc/SamSungDataClean/blob/master/run_analysis.R):.
 
 Note: it is assumed that getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip is downloaded and unzipped into the directory which is set as working directory in R or Rstudio, so that extracted files are available from a subdirectory named 'UCI HAR Dataset'.
 
@@ -78,33 +78,8 @@ Combined Training+Test dataset is saved as "humanActivityRecognitionData.txt" fi
 1. Melt the data set, taking "activity.label" and "subject" as id variables, and the 79 feature measurement columns as  measured variables.
 2. Cast this data set with formula 'subject + activity.label ~ variable', so that subject varies slowest. Use mean as aggregate function.
 
-New data set is saved as "newAverageRecognitionData.txt" file
+New data set is saved as [newAverageRecognitionData.csv](https://github.com/rljc/SamSungDataClean/blob/master/newAverageRecognitionData.csv) file
 
-trainingIntertialSignalsbody_acc_x <- 
-    read.table("UCI HAR Dataset/train/Inertial Signals/body_acc_x_train.txt")
-str(trainingIntertialSignalsbody_acc_x)
+## Not (out of scope)
 
-trainingIntertialSignalsbody_acc_y <- 
-    read.table("UCI HAR Dataset/train/Inertial Signals/body_acc_y_train.txt")
-str(trainingIntertialSignalsbody_acc_y)
-
-View(trainingIntertialSignalsbody_acc_y)
-trainingIntertialSignalsbody_acc_y[1,]
-
-trainingIntertialSignalsbody_gyro_z_train <- 
-    read.table("UCI HAR Dataset/train/Inertial Signals/body_gyro_z_train.txt")
-str(trainingIntertialSignalsbody_gyro_z_train)
-
-
-               header = FALSE, sep = " ", fill=TRUE); 
-# 7351 rows
-str(trainingIntertialSignalsbody_acc_x)
-
-
-
-
-
-
-2. Extractionf of the measurements on the mean and standard deviation for each measurement.
-3. Usage of descriptive labels and names for the activities in the data set
-4. Creation a second, independent tidy data set with the average of each variable for each activity and each subject (the txt file above).
+The inertial signals measures contained in files within test/Inertial Signals and training/Inertial Signals sub directories are not included in the transformation. These files have dimensions of 7352 obs. of 128 variables for training, and 2947 obs. of  128 variables for test. This information captures the 128 readings by window corresponding to the sampling in fixed-width sliding windows of 2.56 sec and 50% overlap. Including them in the data set would create duplicate information and violate the "one observation per row" principle of tidy data, as this information was already processed and included in the 561 measurements.
