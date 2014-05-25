@@ -1,7 +1,7 @@
 ## Tidy Data Set and Tranformations description
 
 In this directory you will find:
-- [newAverageRecognitionData.csv](https://github.com/rljc/SamSungDataClean/blob/master/newAverageRecognitionData.csv): content of a tidy data set, containing data collected and cleaned from original soures listed below, then transformed as depicted below.
+- [newAverageRecognitionData.csv](https://github.com/rljc/SamSungDataClean/blob/master/newAverageRecognitionData.csv): content of a tidy data set, containing data collected and cleaned from original soures listed below, then transformed as depicted in the code book below.
 - [CodeBook.md](https://github.com/rljc/SamSungDataClean/blob/master/CodeBook.md): a code book that describes the variables, the data, and transformations  performed to clean up the data originally collected.
 - [run_analysis.R](https://github.com/rljc/SamSungDataClean/blob/master/run_analysis.R): R script performing the following:
 
@@ -9,6 +9,8 @@ In this directory you will find:
 2. Extraction of the measurements on the mean and standard deviation for each measurement.
 3. Usage of descriptive labels and names for the activities in the data set
 4. Creation a second, independent tidy data set with the average of each variable for each activity and each subject (the csv file above).
+
+Please note that this R script uses the *reshape2* library.
 
 ## Original sources
 

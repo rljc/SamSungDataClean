@@ -11,7 +11,7 @@ WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
 
 - **subject**: identity of the subject performing the activity. The 30 admissible values are integers ranging from 1 to 30.
 
-- 79 feature measurement columns: each column is calculated as average of a Samsung smartphone data feature measurement, for each activity and each subject. Example of column name is **time.gravity.accelerometer.std.X**
+- 79 feature measurement columns: each column is calculated as the **average** of a Samsung smartphone data feature measurement, for each activity and each subject. Example of column name is **time.gravity.accelerometer.std.X**
 
 These 79 columns are split into the following categories:
 
@@ -19,7 +19,7 @@ These 79 columns are split into the following categories:
 - Triaxial estimated body acceleration.
 - Triaxial Angular velocity from the gyroscope. 
 
-Each of these 79 columns contains a measure for each feature defined and retained during the transformations applied. During these transformations only meand and standard deviation information has been retained.
+Each of these 79 columns names designates a measure for each feature defined and retained during the transformations applied: only mean and standard deviation information has been retained.
 
 The elements used to name the columns need to be interpreted in this way:
 - *time*: signals captured at a constant rate of 50 Hz, then filtered.
@@ -36,9 +36,9 @@ The elements used to name the columns need to be interpreted in this way:
 
 ## Transformations
 
-The following transformations were applied to the data set available from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip, and implemented in  [run_analysis.R](https://github.com/rljc/SamSungDataClean/blob/master/run_analysis.R):.
+The following transformations were applied to the data set available from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip, and implemented in the R script [run_analysis.R](https://github.com/rljc/SamSungDataClean/blob/master/run_analysis.R).
 
-Note: it is assumed that getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip is downloaded and unzipped into the directory which is set as working directory in R or Rstudio, so that extracted files are available from a subdirectory named 'UCI HAR Dataset'.
+Note: to run this R script it is assumed that getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip is downloaded and unzipped into the directory which is set as working directory in R or Rstudio, so that extracted files are available from a subdirectory named 'UCI HAR Dataset'.
 
 ### Merge of the original training and test data sets
 
@@ -54,32 +54,33 @@ At this point the 2 datasets are available as data frames:
 - training :  7352 rows x 1+1+79 columns
 - test     :  2947 rows x 1+1+79 columns
 
-They are combined by rows, after adding to each a column codifying the phase (Traing or Test).
+Merge is performed by combination of rows, as each data set describes different observations on the same variables.
 
 ### Extract only the measurements on the mean and standard deviation for each measurement. 
 
-The initial number of feature measurement columns is 561, which is cut down to 79 by filtering in only the columns of which name containes 'mean' or 'std' string.
+The initial number of feature measurement columns is 561, which is cut down to 79 by filtering in only the columns of which name contains 'mean' or 'std' string, as reauired.
 
 Note: we apply this prior to merging Training and Test data sets, in order to optimize performance.
 
 ### Use descriptive activity names to name the activities in the data set
 
-The initial activity information is captured as codes ranging from 1 to 6, which are tranformed into their textual equivalent WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING, by merging with data frame loaded from activity definitions stored in activity_labels.txt. Activity code columns is dropped after this merge.
+The initial activity information is captured as activity.code ranging from 1 to 6, which are tranformed into their textual equivalent WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING, by merging with the data frame loaded from activity definitions stored in activity_labels.txt. activity.code column is dropped after this merge.
 
-Feature measurement columns use short names that may be ambigous, so a few replacement are applied to the column names to clarify and have more descriptive names.
-colnames(hActivityRecognitionData3) <- thenewcolnames
+Feature measurement columns use short names that may be ambigous, so a few replacement are applied to the column names to clarify and have more descriptive names, e.g. replacing 'Acc' by 'accelerometer'.
 
 ### Save combined data set
 
-Combined Training+Test dataset is saved as "humanActivityRecognitionData.txt" file.
+The combined Training+Test dataset is saved as "humanActivityRecognitionData.txt" file.
 
 ### Creates a second, independent tidy data set with the average of each variable for each activity and each subject
+
+The following 2 operations are performed.
 
 1. Melt the data set, taking "activity.label" and "subject" as id variables, and the 79 feature measurement columns as  measured variables.
 2. Cast this data set with formula 'subject + activity.label ~ variable', so that subject varies slowest. Use mean as aggregate function.
 
 New data set is saved as [newAverageRecognitionData.csv](https://github.com/rljc/SamSungDataClean/blob/master/newAverageRecognitionData.csv) file
 
-## Not (out of scope)
+## Note (out of scope)
 
 The inertial signals measures contained in files within test/Inertial Signals and training/Inertial Signals sub directories are not included in the transformation. These files have dimensions of 7352 obs. of 128 variables for training, and 2947 obs. of  128 variables for test. This information captures the 128 readings by window corresponding to the sampling in fixed-width sliding windows of 2.56 sec and 50% overlap. Including them in the data set would create duplicate information and violate the "one observation per row" principle of tidy data, as this information was already processed and included in the 561 measurements.

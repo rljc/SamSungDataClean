@@ -54,7 +54,7 @@ trainingSignals = read.table("UCI HAR Dataset/train/X_train.txt",
 # 7352 obs. of  79 variables
 trainingSignalsForMeanOrStd <- trainingSignals[,meanOrStdMeasureIndices]
 
-# combine Training data frames by rows
+# combine Training data frames by columns
 hActivityRecognitionDataForTraining <- cbind (trainingSubjects, 
                                               trainingActivities, 
                                               trainingSignalsForMeanOrStd)
@@ -80,7 +80,7 @@ testSignals = read.table("UCI HAR Dataset/test/X_test.txt",
 # 7352 obs. of  79 variables
 testSignalsForMeanOrStd <- testSignals[,meanOrStdMeasureIndices]
 
-# combine Test data frames by rows
+# combine Test data frames by columns
 hActivityRecognitionDataForTest <- cbind (testSubjects, 
                                           testActivities, 
                                           testSignalsForMeanOrStd)
