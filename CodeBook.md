@@ -4,15 +4,14 @@ This code book describes the variables, the data, and transformations  performed
 
 ## Data Dictionary
 
-Each column of the tidy data set contained in *humanActivityRecognitionData.txt* is described below.
+Each column of the tidy data set contained in [newAverageRecognitionData.csv](https://github.com/rljc/SamSungDataClean/blob/master/newAverageRecognitionData.csv) is described below.
 
-- *activity.label*: activity performed by the subject. The 6 admissible values are:
+- *activity*: activity performed by the subject. The 6 admissible values are:
 WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
-
-- *phase*: partition of the origianl dataset, which was split for generating training data vs. test data. The 2 admissible values are: Training, Test.
 
 - *subject*: identity of the subject performing the activity. The 30 admissible values are integers ranging fro; 1 to 30.
 
+- 7 feature measurement columns, whic are calculated as average 
 The remaining 79 columns are split into the following categories:
 
 - Triaxial acceleration from the accelerometer (total acceleration).
@@ -54,7 +53,7 @@ At this point the 2 datasets are available as data frames:
 - training :  7352 rows x 1+1+79 columns
 - test     :  2947 rows x 1+1+79 columns
 
-They are combined by rows, after adding to each a column codifying the phase (Traing of Test).
+They are combined by rows, after adding to each a column codifying the phase (Traing or Test).
 
 ### Extract only the measurements on the mean and standard deviation for each measurement. 
 
