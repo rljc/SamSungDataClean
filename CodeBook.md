@@ -77,7 +77,7 @@ The combined Training+Test dataset is saved as "humanActivityRecognitionData.txt
 The following 2 operations are performed.
 
 1. Melt the data set, taking "activity" and "subject" as id variables, and the 79 feature measurement columns as  measured variables.
-2. Cast this data set with formula 'subject + activity.label ~ variable', so that subject varies slowest. Use mean as aggregate function.
+2. Cast this data set with formula 'subject + label ~ variable', so that subject varies slowest. Use mean as aggregate function.
 
 New data set is saved as [newAverageRecognitionData.csv](https://github.com/rljc/SamSungDataClean/blob/master/newAverageRecognitionData.csv) file
 
